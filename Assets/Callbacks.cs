@@ -3,9 +3,11 @@ using Bolt;
 using UdpKit;
 using UnityEngine;
 using udpkit.platform.photon;
-using udpkit.platform.photon.photon;
-using Bolt.photon;
+
+
 using Bolt.Utils;
+using Bolt.Photon;
+
 public class Callbacks : Bolt.GlobalEventListener
 {
     bool full;
@@ -21,10 +23,14 @@ public class Callbacks : Bolt.GlobalEventListener
                 PhotonRoomProperties myToken = new PhotonRoomProperties
                 {
                     IsOpen = false,
-                    IsVisible = false
+                    IsVisible = false,
+
+
                 };
 
-                var matchName = Guid.NewGuid().ToString();
+                myToken.AddRoomProperty("t", 3);
+
+                var matchName = staticData.lobbyName;
 
                 BoltNetwork.SetServerInfo(matchName, myToken);
 

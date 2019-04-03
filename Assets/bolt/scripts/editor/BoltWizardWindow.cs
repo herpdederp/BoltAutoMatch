@@ -339,38 +339,38 @@ public partial class BoltWizardWindow : EditorWindow
 				}
 			},
 
-			{
-				BoltInstalls.Mobile,
-				new BoltPackage()
-				{
-					name = "bolt_mobile_plugins",
-					title = "Mobile Plugins",
-					installTest = MobilePackageInstalled,
-					description = "Install iOS / Android socket plugins"
-				}
-			},
+			// {
+			// 	BoltInstalls.Mobile,
+			// 	new BoltPackage()
+			// 	{
+			// 		name = "bolt_mobile_plugins",
+			// 		title = "Mobile Plugins",
+			// 		installTest = MobilePackageInstalled,
+			// 		description = "Install iOS / Android socket plugins"
+			// 	}
+			// },
 
-			{
-				BoltInstalls.XB1,
-				new BoltPackage()
-				{
-					name = "bolt_xb1",
-					title = "XBox One",
-					installTest = XB1PackageInstalled,
-					description = "Install XB1 support"
-				}
-			},
+			// {
+			// 	BoltInstalls.XB1,
+			// 	new BoltPackage()
+			// 	{
+			// 		name = "bolt_xb1",
+			// 		title = "XBox One",
+			// 		installTest = XB1PackageInstalled,
+			// 		description = "Install XB1 support"
+			// 	}
+			// },
 
-			{
-				BoltInstalls.PS4,
-				new BoltPackage()
-				{
-					name = "bolt_ps4",
-					title = "Playstation 4",
-					installTest = PS4PackageInstalled,
-					description = "Install PS4 support"
-				}
-			},
+			// {
+			// 	BoltInstalls.PS4,
+			// 	new BoltPackage()
+			// 	{
+			// 		name = "bolt_ps4",
+			// 		title = "Playstation 4",
+			// 		installTest = PS4PackageInstalled,
+			// 		description = "Install PS4 support"
+			// 	}
+			// },
 
 			{
 				BoltInstalls.Samples,
@@ -486,20 +486,19 @@ public partial class BoltWizardWindow : EditorWindow
 
 		EditorGUI.BeginDisabledGroup(!IsInstalled(BoltInstalls.Core));
 
-
 		// SAMPLES
 		DrawInstallOption(BoltInstalls.Samples);
 
 		scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
-		// MOBILE
-		DrawInstallOption(BoltInstalls.Mobile);
+		// // MOBILE
+		// DrawInstallOption(BoltInstalls.Mobile);
 
-		// XB1
-		DrawInstallOption(BoltInstalls.XB1);
+		// // XB1
+		// DrawInstallOption(BoltInstalls.XB1);
 
-		// PS4
-		DrawInstallOption(BoltInstalls.PS4);
+		// // PS4
+		// DrawInstallOption(BoltInstalls.PS4);
 
 		EditorGUILayout.EndScrollView();
 

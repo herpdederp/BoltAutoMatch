@@ -3,9 +3,10 @@ using Bolt;
 using UdpKit;
 using UnityEngine;
 using udpkit.platform.photon;
-using udpkit.platform.photon.photon;
-using Bolt.photon;
+
 using Bolt.Utils;
+using Bolt.Photon;
+using System.Linq;
 
 public class Menu : Bolt.GlobalEventListener
 {
@@ -14,7 +15,8 @@ public class Menu : Bolt.GlobalEventListener
     bool blueTeam;
 
     bool noServersFound;
-    float timer = 0;
+
+    bool connecting;
 
     public override void BoltStartBegin()
     {
@@ -22,29 +24,21 @@ public class Menu : Bolt.GlobalEventListener
     }
 
 
-    private void FixedUpdate()
-    {
-        if (BoltNetwork.IsClient == true)
-        {
-            timer += Time.fixedDeltaTime;
 
-            if (timer > 5f)
-            {
-                noServersFound = true;
-                BoltLauncher.Shutdown();
-            }
-
-        }
-    }
 
     public override void BoltShutdownBegin(AddCallback registerDoneCallback)
     {
         registerDoneCallback(Test0);
     }
 
+
+
     void Test0()
     {
-        BoltLauncher.StartServer();
+        connecting = false;
+
+        if (blueTeam)
+            BoltLauncher.StartClient();
     }
 
 
@@ -59,7 +53,7 @@ public class Menu : Bolt.GlobalEventListener
             {
                 redTeam = true;
                 // START CLIENT
-                BoltLauncher.StartClient();
+                BoltLauncher.StartServer();
             }
 
             if (GUILayout.Button("Blue Team", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true)))
@@ -88,40 +82,74 @@ public class Menu : Bolt.GlobalEventListener
 
             if (redTeam == true)
                 token.AddRoomProperty("t", 2);
-
-            var matchName = Guid.NewGuid().ToString();
+            staticData.lobbyName = Guid.NewGuid().ToString();
+            var matchName = staticData.lobbyName;
 
             BoltNetwork.SetServerInfo(matchName, token);
             BoltNetwork.LoadScene("game");
         }
     }
 
+
     public override void SessionListUpdated(Map<Guid, UdpSession> sessionList)
     {
         Debug.LogFormat("Session list updated: {0} total sessions", sessionList.Count);
 
-        foreach (var session in sessionList)
-        {
-            UdpSession udpSession = session.Value as UdpSession;
-            PhotonSession photonSession = udpSession as PhotonSession;
+        var shuffled = sessionList.OrderBy(a => Guid.NewGuid()).ToList();
 
-            if (photonSession.Source == UdpSessionSource.Photon)
+
+        if (connecting == false)
+            foreach (var session in shuffled)
             {
-              
-                if (photonSession.Properties.ContainsKey("t"))
-                {
-                    if (redTeam)
-                    {
-                        if ((int)photonSession.Properties["t"] == 1)
-                            BoltNetwork.Connect(photonSession);
-                    }
-                    else if (blueTeam)
-                        if ((int)photonSession.Properties["t"] == 2)
-                            BoltNetwork.Connect(photonSession);
+                UdpSession udpSession = session.Value as UdpSession;
+                PhotonSession photonSession = udpSession as PhotonSession;
 
+                if (photonSession.Source == UdpSessionSource.Photon)
+                {
+
+                    if (photonSession.Properties.ContainsKey("t"))
+                    {
+                        if (redTeam)
+                        {
+                            if ((int)photonSession.Properties["t"] == 1)
+                            {
+                                BoltNetwork.Connect(photonSession);
+                                connecting = true;
+                            }
+                        }
+                        else if (blueTeam)
+                            if ((int)photonSession.Properties["t"] == 2)
+                            {
+                                BoltNetwork.Connect(photonSession);
+                                connecting = true;
+                            }
+                    }
                 }
             }
-        }
     }
+
+    public override void ConnectRefused(UdpEndPoint endpoint, IProtocolToken token)
+    {
+        base.ConnectRefused(endpoint, token);
+        BoltLauncher.Shutdown();
+    }
+
+    public override void SessionConnectFailed(UdpSession session, IProtocolToken token)
+    {
+        Debug.Log("1");
+        BoltLauncher.Shutdown();
+    }
+
+    public override void SessionCreationFailed(UdpSession session)
+    {
+        Debug.Log("2");
+    }
+
+    public override void SessionCreated(UdpSession session)
+    {
+        Debug.Log("3");
+    }
+
+
 
 }
