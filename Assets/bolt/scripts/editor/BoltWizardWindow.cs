@@ -197,7 +197,7 @@ public partial class BoltWizardWindow : EditorWindow
 		if (!EditorPrefs.GetBool(FirstStartupKey, false))
 		{
 			if (!EditorUtility.DisplayDialog(BoltWizardText.CLOSE_MSG_TITLE,
-											BoltWizardText.CLOSE_MSG_QUESTION, "Yes", "Back"))
+					BoltWizardText.CLOSE_MSG_QUESTION, "Yes", "Back"))
 			{
 				EditorApplication.update += ReOpen;
 			}
@@ -228,65 +228,65 @@ public partial class BoltWizardWindow : EditorWindow
 		introStyle = new GUIStyle(EditorStyles.helpBox)
 		{
 			fontSize = 15,
-			padding = new RectOffset(10, 10, 10, 10),
-			normal = {
-				textColor = commonTextColor
-			}
+				padding = new RectOffset(10, 10, 10, 10),
+				normal = {
+					textColor = commonTextColor
+				}
 		};
 
 		stepStyle = new GUIStyle(EditorStyles.helpBox)
 		{
 			padding = new RectOffset(10, 10, 10, 10),
-			margin = new RectOffset(0, 0, 5, 0),
-			normal = {
-				textColor = commonTextColor
-			}
+				margin = new RectOffset(0, 0, 5, 0),
+				normal = {
+					textColor = commonTextColor
+				}
 		};
 
 		headerLabel = new GUIStyle(EditorStyles.boldLabel)
 		{
 			padding = new RectOffset(10, 0, 0, 0),
-			margin = new RectOffset(),
-			normal = {
-				textColor = commonTextColor
-			}
+				margin = new RectOffset(),
+				normal = {
+					textColor = commonTextColor
+				}
 		};
 
 		headerStyle = new GUIStyle(EditorStyles.boldLabel)
 		{
 			fontSize = 14,
-			margin = new RectOffset(),
-			padding = new RectOffset(10, 0, 0, 0),
-			normal = {
-				textColor = commonTextColor
-			}
+				margin = new RectOffset(),
+				padding = new RectOffset(10, 0, 0, 0),
+				normal = {
+					textColor = commonTextColor
+				}
 		};
 
 		headerLargeLabel = new GUIStyle(EditorStyles.boldLabel)
 		{
 			padding = new RectOffset(10, 0, 0, 0),
-			margin = new RectOffset(),
-			fontSize = 18,
-			normal = {
-				textColor = headerTextColor
-			}
+				margin = new RectOffset(),
+				fontSize = 18,
+				normal = {
+					textColor = headerTextColor
+				}
 		};
 
 		textLabel = new GUIStyle()
 		{
 			wordWrap = true,
-			margin = new RectOffset(),
-			padding = new RectOffset(10, 0, 0, 0),
-			normal = {
-				textColor = commonTextColor
-			}
+				margin = new RectOffset(),
+				padding = new RectOffset(10, 0, 0, 0),
+				normal = {
+					textColor = commonTextColor
+				}
 		};
 
 		centerInputText = new GUIStyle(GUI.skin.textField)
 		{
 			alignment = TextAnchor.MiddleCenter,
-			fontSize = 12,
-			fixedHeight = 26
+				fontSize = 12,
+				fixedHeight = 26
 		};
 
 		minimalButton = new GUIStyle(EditorStyles.miniButton)
@@ -297,7 +297,7 @@ public partial class BoltWizardWindow : EditorWindow
 		simpleButton = new GUIStyle(GUI.skin.button)
 		{
 			fontSize = 12,
-			padding = new RectOffset(10, 10, 10, 10)
+				padding = new RectOffset(10, 10, 10, 10)
 		};
 
 		iconSection = new GUIStyle
@@ -329,14 +329,14 @@ public partial class BoltWizardWindow : EditorWindow
 		{
 			{
 				BoltInstalls.Core,
-				new BoltPackage()
-				{
-					name = "bolt_install",
-					title = "Core Package",
-					description = "Install core bolt package",
-					installTest = MainPackageInstalled,
-					packageFlags = PackageFlags.RunInitialSetup
-				}
+					new BoltPackage()
+					{
+						name = "bolt_install",
+							title = "Core Package",
+							description = "Install core bolt package",
+							installTest = MainPackageInstalled,
+							packageFlags = PackageFlags.RunInitialSetup
+					}
 			},
 
 			// {
@@ -350,37 +350,37 @@ public partial class BoltWizardWindow : EditorWindow
 			// 	}
 			// },
 
-			// {
-			// 	BoltInstalls.XB1,
-			// 	new BoltPackage()
-			// 	{
-			// 		name = "bolt_xb1",
-			// 		title = "XBox One",
-			// 		installTest = XB1PackageInstalled,
-			// 		description = "Install XB1 support"
-			// 	}
-			// },
+			{
+				BoltInstalls.XB1,
+				new BoltPackage()
+				{
+					name = "bolt_xb1",
+						title = "XBox One",
+						installTest = XB1PackageInstalled,
+						description = "Install XB1 support"
+				}
+			},
 
-			// {
-			// 	BoltInstalls.PS4,
-			// 	new BoltPackage()
-			// 	{
-			// 		name = "bolt_ps4",
-			// 		title = "Playstation 4",
-			// 		installTest = PS4PackageInstalled,
-			// 		description = "Install PS4 support"
-			// 	}
-			// },
+			{
+				BoltInstalls.PS4,
+				new BoltPackage()
+				{
+					name = "bolt_ps4",
+						title = "Playstation 4",
+						installTest = PS4PackageInstalled,
+						description = "Install PS4 support"
+				}
+			},
 
 			{
 				BoltInstalls.Samples,
 				new BoltPackage()
 				{
 					name = "bolt_samples",
-					title = "Samples",
-					description = "Install bolt samples",
-					installTest = SamplesPackageInstalled,
-					packageFlags = PackageFlags.WarnForProjectOverwrite
+						title = "Samples",
+						description = "Install bolt samples",
+						installTest = SamplesPackageInstalled,
+						packageFlags = PackageFlags.WarnForProjectOverwrite
 				}
 			}
 		};
@@ -388,9 +388,9 @@ public partial class BoltWizardWindow : EditorWindow
 		// App ID
 		if (string.IsNullOrEmpty(BoltRuntimeSettings.instance.photonAppId))
 		{
-		    AppIdOrEmail = "";
+			AppIdOrEmail = "";
 		}
-        else if (IsAppId(BoltRuntimeSettings.instance.photonAppId))
+		else if (IsAppId(BoltRuntimeSettings.instance.photonAppId))
 		{
 			AppIdOrEmail = BoltRuntimeSettings.instance.photonAppId;
 		}
@@ -460,12 +460,12 @@ public partial class BoltWizardWindow : EditorWindow
 
 		if (GUILayout.Button("Visit Getting Started Documentation", simpleButton))
 		{
-			OpenURL("https://doc.photonengine.com/en-us/bolt/")();
+			OpenURL("https://doc.photonengine.com/en-us/bolt/") ();
 		}
 
 		if (GUILayout.Button("Leave a review", simpleButton))
 		{
-			OpenURL("https://assetstore.unity.com/packages/tools/network/photon-bolt-free-127156")();
+			OpenURL("https://assetstore.unity.com/packages/tools/network/photon-bolt-free-127156") ();
 		}
 
 		GUILayout.EndVertical();
@@ -494,11 +494,11 @@ public partial class BoltWizardWindow : EditorWindow
 		// // MOBILE
 		// DrawInstallOption(BoltInstalls.Mobile);
 
-		// // XB1
-		// DrawInstallOption(BoltInstalls.XB1);
+		// XB1
+		DrawInstallOption(BoltInstalls.XB1);
 
-		// // PS4
-		// DrawInstallOption(BoltInstalls.PS4);
+		// PS4
+		DrawInstallOption(BoltInstalls.PS4);
 
 		EditorGUILayout.EndScrollView();
 
@@ -534,7 +534,7 @@ public partial class BoltWizardWindow : EditorWindow
 			GUILayout.Label(BoltWizardText.PHOTON_DASH, textLabel);
 			if (GUILayout.Button("Visit Dashboard", minimalButton))
 			{
-				OpenURL("https://dashboard.photonengine.com/")();
+				OpenURL("https://dashboard.photonengine.com/") ();
 			}
 			GUILayout.EndHorizontal();
 
@@ -624,10 +624,10 @@ public partial class BoltWizardWindow : EditorWindow
 		}, false);
 		GUILayout.Space(15);
 
-		DrawStepOption(discordIcon, discordHeader, discordText, callback: OpenURL("https://discord.gg/0ya6ZpOvnShSCtbb"));
-		DrawStepOption(bugtrackerIcon, bugtrackerHeader, bugtrackerText, callback: OpenURL("https://github.com/BoltEngine/Bolt-Tracker"));
-		DrawStepOption(documentationIcon, documentationHeader, documentationText, callback: OpenURL("https://doc.photonengine.com/en-us/bolt/current/setup/overview"));
-		DrawStepOption(reviewIcon, reviewHeader, reviewText, callback: OpenURL("https://assetstore.unity.com/packages/tools/network/photon-bolt-free-127156"));
+		DrawStepOption(discordIcon, discordHeader, discordText, callback : OpenURL("https://discord.gg/0ya6ZpOvnShSCtbb"));
+		DrawStepOption(bugtrackerIcon, bugtrackerHeader, bugtrackerText, callback : OpenURL("https://github.com/BoltEngine/Bolt-Tracker"));
+		DrawStepOption(documentationIcon, documentationHeader, documentationText, callback : OpenURL("https://doc.photonengine.com/en-us/bolt/current/setup/overview"));
+		DrawStepOption(reviewIcon, reviewHeader, reviewText, callback : OpenURL("https://assetstore.unity.com/packages/tools/network/photon-bolt-free-127156"));
 
 		// Action
 
@@ -648,16 +648,16 @@ public partial class BoltWizardWindow : EditorWindow
 		GUILayout.Space(10);
 
 		DrawStepOption(introIcon, new GUIContent("Bolt Wizard Intro"),
-					   active: currentStage == BoltSetupStage.SetupIntro); // callback: () => currentStage = BoltSetupStage.SetupIntro
+			active : currentStage == BoltSetupStage.SetupIntro); // callback: () => currentStage = BoltSetupStage.SetupIntro
 
 		DrawStepOption(photonCloudIcon, new GUIContent("Photon Cloud"),
-					   active: currentStage == BoltSetupStage.SetupPhoton); // callback: () => currentStage = BoltSetupStage.SetupPhoton
+			active : currentStage == BoltSetupStage.SetupPhoton); // callback: () => currentStage = BoltSetupStage.SetupPhoton
 
 		DrawStepOption(boltIcon, new GUIContent("Bolt"),
-					   active: currentStage == BoltSetupStage.SetupBolt); // callback: () => currentStage = BoltSetupStage.SetupBolt
+			active : currentStage == BoltSetupStage.SetupBolt); // callback: () => currentStage = BoltSetupStage.SetupBolt
 
 		DrawStepOption(discordIcon, new GUIContent("Support"),
-					   active: currentStage == BoltSetupStage.SetupSupport); // callback: () => currentStage = BoltSetupStage.SetupSupport
+			active : currentStage == BoltSetupStage.SetupSupport); // callback: () => currentStage = BoltSetupStage.SetupSupport
 
 		GUILayout.FlexibleSpace();
 		GUILayout.Label(BoltNetwork.CurrentVersion, textLabel);
@@ -678,7 +678,18 @@ public partial class BoltWizardWindow : EditorWindow
 		GUILayout.BeginHorizontal();
 		GUILayout.FlexibleSpace();
 
-		EditorGUI.BeginDisabledGroup((int)currentStage == 1);
+		EditorGUI.BeginDisabledGroup((int) currentStage == 1);
+
+#if !BOLT_CLOUD
+		if (currentStage == BoltSetupStage.SetupPhoton)
+		{
+			if (GUILayout.Button("Skip", GUILayout.Width(ButtonWidth)))
+			{
+				NextStep();
+				beforeNextCallback = null;
+			}
+		}
+#endif
 
 		if (GUILayout.Button("Back", GUILayout.Width(ButtonWidth)))
 		{
@@ -808,7 +819,14 @@ public partial class BoltWizardWindow : EditorWindow
 		}
 		else
 		{
-			ignoredAction = () => { ShowNotification(new GUIContent("Please contact us at developer@photonengine.com")); };
+			if (install == BoltInstalls.Core)
+			{
+				ignoredAction = () => { ShowNotification(new GUIContent("Bolt Core is no longer required. You are ready to go.")); };
+			}
+			else
+			{
+				ignoredAction = () => { ShowNotification(new GUIContent("Please contact us at developer@photonengine.com")); };
+			}
 
 			EditorGUI.BeginDisabledGroup(true);
 		}
@@ -881,12 +899,12 @@ public partial class BoltWizardWindow : EditorWindow
 
 	void NextStep()
 	{
-		currentStage += (int)currentStage < Enum.GetValues(typeof(BoltSetupStage)).Length ? 1 : 0;
+		currentStage += (int) currentStage < Enum.GetValues(typeof(BoltSetupStage)).Length ? 1 : 0;
 	}
 
 	void BackStep()
 	{
-		currentStage -= (int)currentStage > 1 ? 1 : 0;
+		currentStage -= (int) currentStage > 1 ? 1 : 0;
 	}
 
 	bool IsInstalled(params BoltInstalls[] installs)

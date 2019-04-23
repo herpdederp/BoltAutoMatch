@@ -224,7 +224,10 @@ Please, feel free to click on the Next button, and get started.";
 
 	Boolean MainPackageInstalled()
 	{
-		return File.Exists(Path.Combine(BoltPathUtility.ScriptsPath, "BoltLauncher.cs"));
+		string SETTINGS_PATH = Path.Combine(BoltPathUtility.ResourcesPath, "BoltRuntimeSettings.asset");
+		string PREFABDB_PATH = Path.Combine(BoltPathUtility.ResourcesPath, "BoltPrefabDatabase.asset");
+
+		return File.Exists(SETTINGS_PATH) && File.Exists(PREFABDB_PATH);
 	}
 
 	Boolean SamplesPackageInstalled()

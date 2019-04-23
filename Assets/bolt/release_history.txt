@@ -1,3 +1,29 @@
+1.2.8
+
+Added: Option to Join a room by name, instead of using only the Photon Session. Now you will be able to create a "PhotonSession" passing the room name you want to join and connect to it as usual.
+Added: Option to disable the A2S Service on Bolt Pro.
+
+Changed: Dynamic Region List. When you use the "Best Region" feature, you can select the available regions using the White List configuration on the Photon Cloud Dashboard. If you are using a China AppID, only the China region will be available.
+Changed: Skip button on Photon Cloud configuration inside the Bolt Wizard window for Bolt Pro version.
+Changed: Public API Naming of BoltEntity. Several methods and functions were refactored to agree with the C# Coding Guidelines. The old symbols are still present, but with an obsolete marking and will be removed in a future version.
+Changed: "SessionListUpdated" callback is not called when running as Bolt Server.
+Changed: "SessionListUpdated" is always called, even if there is not session available.
+
+Fixed: JoinRoomTimeout issue. After the specified timeout, if the peer is not able to connect/join a room, the "SessionConnectFailed" callback will be raised.
+Fixed: Bolt Wizard window menu item disappear when Updating Bolt if there are any errors on the scripts.
+Fixed: No callback when the client attempts to connect to a full server or to a closed room. When the target room is full, you will receive a "SessionConnectFailed" callback.
+Fixed: Wrong callback called when the max CCU limit is reached. When this occurs, the peer will receive a "BoltShutdownBegin" with the "UdpConnectionDisconnectReason.MaxCCUReached" as "disconnectReason".
+Fixed: Wrong callback called when the connection is refused. When the server refuses the connection, the "ConnectRefused" callback will be raised.
+Fixed: Server authoritative movement in Bolt hackable. It was added the option "Enable Frame Limit" to all commands, that limit the queue/execution to only one command per frame (on client and server).
+Fixed: "SessionListUpdated" not called anymore after connection attempt is refused.
+Fixed: Issues with "InvalidRegion" after latest update of Photon Realtime.
+Fixed: Latency simulation only works from client to server. Now it works as expected on both ends of the connection.
+Fixed: No callback when the client attempts to connect to a recent shutdown server. When you attempt to connect to a nonexistent session, the "SessionConnectFailed" will be invoked.
+Fixed: "SetParent" bug reset position back to the old position before parented. We recommend using the Transform Space as "Local".
+Fixed: Smoothing/interpolation issues on state properties. Solved for "Array of Floats", "Array of Quaternions", Quaternion, "Array of Vectors".
+
+Removed: Old project.bytes and backup files.
+
 1.2.7
 
 Changed: The client will be shutdown when is not possible to establish a connection with a Photon Master Server when using Photon integration.
